@@ -1,0 +1,6 @@
+{
+  "name": "Sam Kay Animal Feeds",
+  "description": "Manufacturer and supplier of quality rabbit, dog, and cat feeds in Tanke, Kwara State, Nigeria. Browse feeds, select package sizes and quantities, and send your order enquiry on WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

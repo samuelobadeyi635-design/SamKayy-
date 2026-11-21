@@ -1,0 +1,620 @@
+SAM KAY ANIMAL FEEDS
+
+WEBSITE DEVELOPMENT MASTER PROMPT
+
+Project brief, functional requirements, design direction and
+implementation instructions
+
+1.  Project instruction
+
+Act as a senior full-stack software engineer, UI/UX designer, e-commerce
+architect, database engineer, SEO specialist and mobile-first web
+developer. Plan, design and build a professional, secure, responsive
+website for Sam Kay Animal Feeds. The website must make it easy for
+customers to discover feeds for rabbits, dogs and cats, choose package
+sizes and quantities, review an estimated order total, and complete
+their order enquiry through WhatsApp.
+
+Build a real, functional website—not just a static visual mock-up. Use
+the business information and product details supplied by the owner as
+the source of truth. Where information is missing, create editable
+placeholders or request confirmation. Never invent product formulations,
+ingredients, nutritional values, certifications, prices, delivery
+promises or business claims.
+
+2.  Business profile
+
+3.  Main website goals
+
+Present Sam Kay Animal Feeds as a credible, professional animal-feed
+manufacturer and supplier.
+
+Help visitors browse products by animal category: Rabbit, Dog and Cat.
+
+Allow customers to select available package sizes and enter the
+quantities they need.
+
+Allow customers to add products from different categories to one basket.
+
+Keep individual product prices hidden on public catalogue and
+product-detail views.
+
+Show an estimated order total in the basket/order summary, calculated
+from current admin-managed prices and discounts.
+
+Send the complete order enquiry to the business through WhatsApp. Do not
+process online payments.
+
+Provide a secure admin dashboard for managing products, package sizes,
+prices, discounts, stock and business information.
+
+Make the website fast, accessible, search-engine friendly and easy to
+use on mobile devices.
+
+4.  Website navigation and page structure
+
+The primary navigation must contain exactly these three main items:
+
+HOME
+
+FEEDS
+
+QUANTITY
+
+Supporting pages may be linked in the footer or relevant page sections:
+
+About Us
+
+Contact Us
+
+Frequently Asked Questions
+
+Pickup and Delivery Information
+
+Privacy Policy
+
+Terms and Conditions
+
+Suggested routes:
+
+/ — Home
+
+/feeds — Feed catalogue
+
+/feeds/[product-slug] — Product details
+
+/quantity — Basket and order summary
+
+/about
+
+/contact
+
+/faq
+
+/pickup-delivery
+
+/privacy
+
+/terms
+
+5.  Homepage requirements
+
+Create a clean, welcoming hero section with the business name, a concise
+value proposition and clear calls to action such as “Explore Feeds” and
+“Order on WhatsApp”.
+
+Use the owner’s supplied logo. Do not recreate or replace it unless
+asked.
+
+Show three prominent category cards for Rabbit Feeds, Dog Feeds and Cat
+Feeds.
+
+Explain that the business manufactures and supplies animal feeds, using
+only claims confirmed by the owner.
+
+Highlight affordability, quality, wholesale availability and pickup at
+Tanke.
+
+Include a simple “How to Order” section: browse feeds, choose size and
+quantity, review basket, send order on WhatsApp.
+
+Include contact and WhatsApp calls to action, plus a clear footer.
+
+6.  Feed catalogue and product details
+
+Organise the catalogue into three categories:
+
+Rabbit Feeds
+
+Dog Feeds
+
+Cat Feeds
+
+The actual product names, descriptions, photographs, ingredients and
+nutritional specifications must come from the owner’s product catalogue.
+If that catalogue is not available during development, use clearly
+labelled sample/demo entries only and do not publish them as real
+products.
+
+Each product record should support:
+
+Product name and unique URL slug
+
+Animal category
+
+Short and full product descriptions
+
+Product images and descriptive alt text
+
+Available package sizes configured separately for each product
+
+Admin-managed price for each package size
+
+Stock status and optional stock quantity
+
+Wholesale/bulk discount eligibility
+
+Ingredients and feeding guidance only when verified by the owner
+
+Nutritional information only when exact verified specifications are
+supplied
+
+Published/unpublished status
+
+Important: Do not assume every product is available in every package
+size. The admin must be able to configure package sizes independently
+for each product.
+
+7.  Package sizes and quantity selection
+
+Initial package-size options:
+
+1kg
+
+2kg
+
+5kg
+
+10kg
+
+20kg
+
+25kg
+
+Customers may order any quantity; there is no general minimum order
+quantity. For each product, display only the package sizes enabled by
+the administrator. Provide clear quantity controls, including plus/minus
+buttons and a direct quantity field. Validate that quantities are whole
+numbers greater than zero.
+
+8.  Pricing and wholesale discounts
+
+Do not show individual product or package prices on public catalogue
+cards or product-detail pages.
+
+Show the calculated estimated subtotal and order total in the
+basket/order summary.
+
+Prices must be entered and maintained by the administrator; do not
+invent or hard-code real prices.
+
+Allow the administrator to configure prices by product and package size.
+
+Allow configurable bulk/wholesale discounts by product and quantity
+threshold. Support percentage or fixed-amount discounts if appropriate.
+
+Show a clear note that the basket total is an estimate and final
+availability, delivery charges and order confirmation are subject to
+business confirmation.
+
+If a product/package has no configured price, do not calculate a false
+total. Display “Request a quotation on WhatsApp” for that line item.
+
+Calculate prices and discounts securely on the server using current
+database values. Do not trust totals submitted by the browser.
+
+9.  Basket and order summary (QUANTITY)
+
+The basket must support:
+
+Adding multiple products, including products from different animal
+categories.
+
+Selecting package size and quantity for each line item.
+
+Increasing/decreasing quantities and removing items.
+
+Showing product name, package size, quantity, line total, discounts,
+subtotal and estimated total.
+
+Persisting the basket during normal browsing, preferably with a suitable
+client-side persistence approach.
+
+Clear empty-basket and successful-add-to-basket feedback.
+
+A customer notes/instructions field.
+
+A fulfilment choice: pickup at Tanke or delivery (delivery details to be
+confirmed/configured).
+
+Customer name and phone number before preparing the WhatsApp enquiry.
+
+10. WhatsApp order completion
+
+WhatsApp is the final order-enquiry channel. There must be no online
+checkout payment gateway at this stage. When the customer clicks the
+WhatsApp order button, open WhatsApp Click to Chat with a pre-filled,
+readable message.
+
+The generated message should include:
+
+Business name: Sam Kay Animal Feeds
+
+Customer name and phone number
+
+Each selected product name
+
+Animal category
+
+Package size and quantity
+
+Line totals and any applicable discount, where prices are configured
+
+Estimated order total, where calculable
+
+Pickup or delivery preference
+
+Delivery location, if applicable
+
+Customer notes or special instructions
+
+Use the confirmed WhatsApp number in international format without spaces
+or punctuation in the wa.me URL. The currently supplied number must be
+verified before launch. Opening WhatsApp does not mean an order has been
+submitted or accepted; the customer must send the message, and the
+business must confirm the order.
+
+11. Admin dashboard
+
+Create a protected admin area with secure login and no public admin
+registration.
+
+Suggested admin routes:
+
+/admin/login
+
+/admin/dashboard
+
+/admin/products
+
+/admin/categories
+
+/admin/pricing
+
+/admin/discounts
+
+/admin/inventory
+
+/admin/settings
+
+/admin/analytics
+
+Admin capabilities:
+
+Create, edit, publish, unpublish and delete products.
+
+Manage Rabbit, Dog and Cat categories.
+
+Upload, replace and organise product images.
+
+Configure available package sizes separately for each product.
+
+Set and update prices for each product/package combination.
+
+Create, edit, activate and deactivate wholesale discount rules.
+
+Update stock quantities and mark products/packages as available or out
+of stock.
+
+Edit product descriptions, verified ingredients, feeding guidance and
+nutritional information.
+
+Update business contact details, WhatsApp number, pickup information and
+delivery settings.
+
+View basic order-enquiry activity or analytics if enquiry tracking is
+implemented.
+
+12. Recommended technology
+
+13. Suggested database structure
+
+Design a relational schema with appropriate IDs, foreign keys,
+timestamps and indexes. Suggested tables:
+
+profiles — administrator profile and role information
+
+categories — Rabbit, Dog and Cat categories
+
+products — product details and publication status
+
+product_images — product image paths, ordering and alt text
+
+package_sizes — sizes enabled for each product
+
+product_prices — private prices for product/package combinations
+
+discount_rules — wholesale discount thresholds and values
+
+inventory — stock quantities and availability
+
+nutritional_info — verified nutritional specifications
+
+faqs — editable frequently asked questions
+
+business_settings — business contact, WhatsApp, pickup and delivery
+settings
+
+order_enquiries — optional enquiry records if the business wants to
+track initiated enquiries
+
+14. Security and privacy requirements
+
+Enable Supabase Row Level Security (RLS) on relevant tables.
+
+Public visitors may read published product/category information only.
+
+Public users must not be able to read private product_prices, discount
+rules or other confidential admin data directly.
+
+Only authenticated, authorised administrators may create or change
+products, prices, discounts, inventory and settings.
+
+Never expose the Supabase service-role key or other secrets in
+browser-side code.
+
+Validate and calculate all prices and discounts server-side using
+trusted database records.
+
+Validate all user inputs and protect admin routes and server endpoints.
+
+Do not collect unnecessary personal information. Provide suitable
+privacy information.
+
+15. Design and user experience
+
+Use a modern, clean, trustworthy visual identity suitable for an
+animal-feed manufacturer.
+
+Use the supplied business logo and brand assets.
+
+Use a consistent colour palette, readable typography, clear spacing and
+high-quality product imagery supplied or approved by the owner.
+
+Make category browsing and adding products to the basket simple and
+obvious.
+
+Use clear labels and feedback for size selection, quantity controls,
+stock status and basket actions.
+
+Keep the interface uncluttered; avoid excessive animations, pop-ups or
+decorative elements that slow down ordering.
+
+Make buttons and form controls touch-friendly and accessible.
+
+16. Mobile responsiveness and performance
+
+Design mobile-first and support screen widths from approximately 320px
+upward.
+
+Use responsive layouts for phones, tablets and desktop screens.
+
+Prevent horizontal scrolling and clipped content.
+
+Make navigation, product cards, quantity controls and WhatsApp actions
+easy to use on small screens.
+
+Optimise images, lazy-load below-the-fold media and minimise unnecessary
+scripts.
+
+Aim for strong Core Web Vitals: LCP at or below 2.5 seconds, INP below
+200 milliseconds and CLS below 0.1 under suitable test conditions.
+
+17. SEO requirements
+
+Use descriptive page titles and meta descriptions for the business and
+its product categories.
+
+Use semantic HTML headings and meaningful internal links.
+
+Create readable product and category URLs.
+
+Add descriptive alt text to product images.
+
+Generate an XML sitemap and configure robots.txt.
+
+Add canonical URLs and Open Graph metadata where appropriate.
+
+Use structured data only when the information is accurate and eligible;
+do not publish fabricated ratings, reviews or prices.
+
+Prepare the site for Google Search Console and analytics integration.
+
+18. Accessibility
+
+Use accessible colour contrast and readable text sizes.
+
+Ensure all interactive controls can be used with a keyboard.
+
+Provide visible focus states and descriptive form labels.
+
+Use meaningful link and button text.
+
+Provide useful error messages and status feedback.
+
+Do not rely on colour alone to communicate stock or validation status.
+
+19. Quality assurance and testing
+
+Test all primary navigation links and supporting pages.
+
+Test category browsing, product search/filtering if included, and
+product detail pages.
+
+Test product-specific package sizes and quantity selection.
+
+Test adding, editing and removing basket items across all categories.
+
+Test price calculation, bulk discounts, missing prices and estimated
+totals.
+
+Test out-of-stock handling and quantity validation.
+
+Test WhatsApp message content, number formatting and mobile/desktop
+handoff.
+
+Test pickup and delivery selections.
+
+Test admin login, permissions and all product/pricing/inventory
+management functions.
+
+Test database access rules and ensure private pricing is not exposed to
+public users.
+
+Test responsive behaviour, accessibility basics, page speed and broken
+links.
+
+20. Development phases
+
+Project setup: confirm requirements, inspect the logo and product
+catalogue, initialise the codebase and configure Netlify/Supabase.
+
+Design system: establish typography, colours, reusable components and
+responsive layouts.
+
+Public pages: build the homepage, feed catalogue, product details and
+supporting pages.
+
+Basket and quantity flow: implement package selection, quantity
+controls, basket calculations and order summary.
+
+Database and authentication: create schema, storage, admin
+authentication and security policies.
+
+Admin dashboard: implement product, package, pricing, discount,
+inventory and settings management.
+
+WhatsApp integration: create and test the pre-filled order-enquiry
+workflow.
+
+SEO and optimisation: implement metadata, sitemap, accessibility and
+performance improvements.
+
+Quality assurance: test all flows and fix issues across mobile, tablet
+and desktop.
+
+Deployment: deploy to Netlify, connect the confirmed domain when
+available and complete launch checks.
+
+21. Important rules — do not violate
+
+Do not display individual product prices on public product listings or
+product pages.
+
+Do show an estimated total in the basket when valid prices are
+configured.
+
+Do not invent product names, feed formulations, ingredients, nutritional
+values, certifications, prices or reviews.
+
+Do not assume all products have all package sizes.
+
+Do not impose a general minimum order quantity.
+
+Do not add an online payment gateway; orders are finalised through
+WhatsApp.
+
+Do not expose private pricing or administrator credentials to public
+visitors.
+
+Do not treat opening WhatsApp as a confirmed order.
+
+Keep the main navigation limited to Home, Feeds and Quantity.
+
+22. Information to confirm before launch
+
+The final WhatsApp number and whether it is active for business orders.
+
+The actual product catalogue for Rabbit, Dog and Cat feeds.
+
+The exact package sizes available for each individual product.
+
+Verified product descriptions, ingredients and nutritional
+specifications.
+
+Product photographs and the original logo file.
+
+Retail prices and wholesale discount rules for each product/package
+size.
+
+Stock-management approach and whether stock quantities should be visible
+to customers.
+
+Delivery areas, delivery charges, timelines and any conditions.
+
+Exact pickup address or directions for Tanke.
+
+Preferred domain name and any existing domain registrar details.
+
+23. Final expected deliverable
+
+Deliver a complete, deployable, mobile-friendly website for Sam Kay
+Animal Feeds with a professional homepage, Rabbit/Dog/Cat feed
+catalogue, product-specific package-size selection, quantity/basket
+system, private admin-managed pricing, wholesale discounts, estimated
+basket totals, secure administrator dashboard and WhatsApp order-enquiry
+completion. Include the database schema, environment-variable template,
+deployment instructions and a concise handover guide. The finished site
+must be tested, secure and ready for the owner to populate with verified
+product information.
+
+END OF WEBSITE DEVELOPMENT MASTER PROMPT
+
+Business name | Sam Kay Animal Feeds
+
+Business location | Tanke, Kwara State, Nigeria
+
+Business model | The business manufactures and supplies animal feeds.
+
+Product categories | Rabbit feeds, dog feeds and cat feeds.
+
+Main selling points | Affordable pricing, quality feeds, wholesale
+supply, reliable service and fast delivery (subject to confirmed service
+coverage).
+
+Pickup | Customer pickup is available at Tanke.
+
+WhatsApp | +234 09042450053 — confirm the active number and use the
+correct international format in the website link.
+
+Domain | Not yet provided. Keep the domain configurable.
+
+Hosting | Netlify
+
+Frontend | Next.js with React and TypeScript
+
+Styling | Tailwind CSS; create reusable, accessible components
+
+Database | Supabase PostgreSQL
+
+Authentication | Supabase Auth for administrator access
+
+Image storage | Supabase Storage or another suitable managed storage
+service
+
+Hosting | Netlify
+
+Server-side logic | Secure server routes/functions for pricing
+calculations and protected operations
+
+Order completion | WhatsApp Click to Chat; no payment gateway
